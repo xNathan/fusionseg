@@ -4,7 +4,7 @@ import fnmatch
 
 #Caffe binary location from deeplab-v1 installation
 caffe_binary = '/vision/vision_users/suyog/deep_video_segmentation/code_release/deeplab-public-ver2/distribute/bin/caffe.bin' 
-
+image_size = 380
 model_type = sys.argv[1]
 ext = sys.argv[2]
 
@@ -47,6 +47,7 @@ test_file_path = model_dir + model_type + '_stream.prototxt'
 test_file = open(test_file_path,'w')
 
 tokens = {}
+tokens['${IMAGE_SIZE}'] = 'crop_size: {}'.format(image_size)
 tokens['${IMAGE_DIR}'] = 'root_folder: \"' + image_dir + '\"'
 tokens['${OUTPUT_DIR}'] = 'prefix: \"' + image_dir + '/\"'
 

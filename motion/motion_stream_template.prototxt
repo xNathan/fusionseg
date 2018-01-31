@@ -11,7 +11,7 @@ include {
 }
 transform_param {
   mirror: false
-  crop_size: 513
+  crop_size: ${IMAGE_SIZE}
   mean_value: 104.008
   mean_value: 116.669
   mean_value: 122.675
