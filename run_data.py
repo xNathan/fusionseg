@@ -6,6 +6,7 @@ import os
 import subprocess
 
 caffe_bin = '/home/nathan/own/caffe/deeplab-public-ver2/distribute/bin/caffe.bin'
+caffe_bin = '/home/nathan/own/caffe/deeplab-public-ver2-bitbucket/distribute/bin/caffe.bin'
 gpu_device = 0
 
 base_dir = os.path.dirname(os.path.realpath(__file__))
@@ -18,7 +19,7 @@ model_type_map = {
 }
 # 裁减的矩形区域大小
 # 过大会导致GPU显存不足
-image_size = 380
+image_size = 360
 
 for root, dirs, files in os.walk(data_dir):
     if dirs:
@@ -88,7 +89,8 @@ for root, dirs, files in os.walk(data_dir):
     # print(cmd)
     args = [caffe_bin, 'test', '--model', test_proto_path, '--weights',
             model_weight_path, '--iterations', str(len(image_list))]
-    if gpu_device != False:
+    if gpu_device is not None:
         args.extend(['--gpu', str(gpu_device)])
     p = subprocess.Popen(args)
     p.wait()
+
